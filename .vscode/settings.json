@@ -1,6 +1,15 @@
 {
     "cSpell.words": [
+        "argb",
+        "delinearized",
+        "Delinearizes",
+        "invf",
         "lerp",
-        "signum"
+        "Linearizes",
+        "linrgb",
+        "lstar",
+        "powf",
+        "signum",
+        "SRGB"
     ]
 }
