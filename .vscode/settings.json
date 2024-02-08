@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "argb",
+        "consts",
         "delinearized",
         "Delinearizes",
         "invf",
@@ -9,6 +10,7 @@
         "linrgb",
         "lstar",
         "powf",
+        "powi",
         "signum",
         "SRGB"
     ]
