@@ -19,10 +19,10 @@ use super::viewing_conditions::{self, ViewingConditions};
 /// hue 203, chroma 3, lightness 100)
 ///
 pub struct Cam16 {
-    hue: f64,
+    pub(crate) hue: f64,
 
     // informally, colorfulness / color intensity. like saturation in HSL, except perceptually accurate.
-    chroma: f64,
+    pub(crate) chroma: f64,
 
     // lightness
     j: f64,
@@ -87,12 +87,12 @@ impl Cam16 {
     /// @param argb ARGB representation of a color.
     /// @return CAM16 color, assuming the color was viewed in default viewing
     ///     conditions.
-    pub fn from_int(argb: i32) -> Cam16 {
+    pub fn from_int(argb: u32) -> Cam16 {
         Cam16::from_int_in_viewing_conditions(argb, viewing_conditions::default())
     }
 
     pub fn from_int_in_viewing_conditions(
-        argb: i32,
+        argb: u32,
         viewing_conditions: &ViewingConditions,
     ) -> Cam16 {
         let red = (argb & 0x00ff0000) >> 16;
