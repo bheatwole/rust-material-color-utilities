@@ -1,4 +1,4 @@
-/// Utility methods for mathematical operations.
+// Utility methods for mathematical operations.
 
 /// The signum function.
 ///
