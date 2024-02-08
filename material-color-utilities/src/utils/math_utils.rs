@@ -1,6 +1,6 @@
 // Utility methods for mathematical operations.
 
-/// The signum function.
+/// The signum function. This differs from the rust version as zero is returned as 0.0
 ///
 /// Returns 1 if num > 0, -1 if num < 0, and 0 if num = 0.
 pub fn signum(num: f64) -> f64 {

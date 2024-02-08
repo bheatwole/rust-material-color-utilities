@@ -20,28 +20,24 @@ pub fn hex_from_argb(argb: u32) -> String {
 /// - Returns: ARGB representation of color.
 pub fn argb_from_hex(hex: &str) -> u32 {
     let hex = hex.trim_start_matches('#');
-    let is_three = hex.len() == 3;
-    let is_six = hex.len() == 6;
-    let is_eight = hex.len() == 8;
-    if !is_three && !is_six && !is_eight {
-        panic!("unexpected hex {}", hex);
-    }
-    let mut r = 0;
-    let mut g = 0;
-    let mut b = 0;
-    if is_three {
-        r = parse_int_hex(&hex[0..1].repeat(2));
-        g = parse_int_hex(&hex[1..2].repeat(2));
-        b = parse_int_hex(&hex[2..3].repeat(2));
-    } else if is_six {
-        r = parse_int_hex(&hex[0..2]);
-        g = parse_int_hex(&hex[2..4]);
-        b = parse_int_hex(&hex[4..6]);
-    } else if is_eight {
-        r = parse_int_hex(&hex[2..4]);
-        g = parse_int_hex(&hex[4..6]);
-        b = parse_int_hex(&hex[6..8]);
-    }
+    let (r, g, b) = match hex.len() {
+        3 => (
+            parse_int_hex(&hex[0..1].repeat(2)),
+            parse_int_hex(&hex[1..2].repeat(2)),
+            parse_int_hex(&hex[2..3].repeat(2)),
+        ),
+        6 => (
+            parse_int_hex(&hex[0..2]),
+            parse_int_hex(&hex[2..4]),
+            parse_int_hex(&hex[4..6]),
+        ),
+        8 => (
+            parse_int_hex(&hex[2..4]),
+            parse_int_hex(&hex[4..6]),
+            parse_int_hex(&hex[6..8]),
+        ),
+        _ => panic!("unexpected hex {}", hex),
+    };
 
     ((255 << 24) | ((r & 0x0ff) << 16) | ((g & 0x0ff) << 8) | (b & 0x0ff)) as u32
 }
