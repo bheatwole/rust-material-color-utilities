@@ -38,7 +38,7 @@ pub struct Scheme {
 
 impl Scheme {
     /// Light scheme from core palette
-    pub fn light_from_core_palette(core: CorePalette) -> Scheme {
+    pub fn light_from_core_palette(core: &CorePalette) -> Scheme {
         Scheme {
             primary: core.a1.tone(40),
             on_primary: core.a1.tone(100),
@@ -77,7 +77,7 @@ impl Scheme {
     }
 
     /// Dark scheme from core palette
-    pub fn dark_from_core_palette(core: CorePalette) -> Scheme {
+    pub fn dark_from_core_palette(core: &CorePalette) -> Scheme {
         Scheme {
             primary: core.a1.tone(80),
             on_primary: core.a1.tone(20),
@@ -125,7 +125,7 @@ impl Scheme {
     ///
     /// A light Material color scheme.
     pub fn light(argb: u32) -> Scheme {
-        Scheme::light_from_core_palette(CorePalette::of(argb))
+        Scheme::light_from_core_palette(&CorePalette::of(argb))
     }
 
     /// Returns a dark Material color scheme based on the color's hue.
@@ -138,7 +138,7 @@ impl Scheme {
     ///
     /// A dark Material color scheme.
     pub fn dark(argb: u32) -> Scheme {
-        Scheme::dark_from_core_palette(CorePalette::of(argb))
+        Scheme::dark_from_core_palette(&CorePalette::of(argb))
     }
 
     /// Returns a light Material content color scheme based on the color's hue.
@@ -151,7 +151,7 @@ impl Scheme {
     ///
     /// A light Material content color scheme.
     pub fn light_content(argb: u32) -> Scheme {
-        Scheme::light_from_core_palette(CorePalette::content_of(argb))
+        Scheme::light_from_core_palette(&CorePalette::content_of(argb))
     }
 
     /// Returns a dark Material content color scheme based on the color's hue.
@@ -164,6 +164,6 @@ impl Scheme {
     ///
     /// A dark Material content color scheme.
     pub fn dark_content(argb: u32) -> Scheme {
-        Scheme::dark_from_core_palette(CorePalette::content_of(argb))
+        Scheme::dark_from_core_palette(&CorePalette::content_of(argb))
     }
 }
