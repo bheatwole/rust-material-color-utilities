@@ -1,9 +1,9 @@
-use std::collections::HashMap;
+use std::{cell::RefCell, collections::HashMap};
 
 use crate::hct::Hct;
 
 pub struct TonalPalette {
-    cache: HashMap<u32, u32>,
+    cache: RefCell<HashMap<u32, u32>>,
     hue: f64,
     chroma: f64,
     key_color: Hct,
@@ -35,7 +35,7 @@ impl TonalPalette {
     /// Tones matching that color's hue and chroma.
     pub fn from_hct(hct: Hct) -> TonalPalette {
         TonalPalette {
-            cache: HashMap::new(),
+            cache: RefCell::new(HashMap::new()),
             hue: hct.hue(),
             chroma: hct.chroma(),
             key_color: hct,
@@ -55,7 +55,7 @@ impl TonalPalette {
     pub fn from_hue_and_chroma(hue: f64, chroma: f64) -> TonalPalette {
         let key_color = TonalPalette::create_key_color(hue, chroma);
         TonalPalette {
-            cache: HashMap::new(),
+            cache: RefCell::new(HashMap::new()),
             hue,
             chroma,
             key_color,
@@ -100,11 +100,12 @@ impl TonalPalette {
     /// # Returns
     ///
     /// ARGB representation of a color with that tone.
-    pub fn tone(&mut self, tone: u32) -> u32 {
+    pub fn tone(&self, tone: u32) -> u32 {
         debug_assert!(tone <= 100);
 
         *self
             .cache
+            .borrow_mut()
             .entry(tone)
             .or_insert_with(|| Hct::from_hct(self.hue, self.chroma, tone as f64).to_int())
     }
@@ -118,7 +119,7 @@ impl TonalPalette {
     /// # Returns
     ///
     /// HCT representation of a color with that tone.
-    pub fn get_hct(&mut self, tone: u32) -> Hct {
+    pub fn get_hct(&self, tone: u32) -> Hct {
         Hct::from_int(self.tone(tone))
     }
 }

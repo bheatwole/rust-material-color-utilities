@@ -16,12 +16,12 @@ pub struct CorePaletteColors {
 /// color scheme. 5 sets of tones are generated, all except one use the same hue
 /// as the key color, and all vary in chroma.
 pub struct CorePalette {
-    a1: TonalPalette,
-    a2: TonalPalette,
-    a3: TonalPalette,
-    n1: TonalPalette,
-    n2: TonalPalette,
-    error: TonalPalette,
+    pub a1: TonalPalette,
+    pub a2: TonalPalette,
+    pub a3: TonalPalette,
+    pub n1: TonalPalette,
+    pub n2: TonalPalette,
+    pub error: TonalPalette,
 }
 
 impl CorePalette {
