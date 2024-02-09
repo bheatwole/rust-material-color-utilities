@@ -37,11 +37,11 @@ pub struct Hct {
 }
 
 impl Hct {
-    pub fn new_from_hct(hue: f64, chroma: f64, tone: f64) -> Hct {
-        Hct::new_from_int(solve_to_int(hue, chroma, tone))
+    pub fn from_hct(hue: f64, chroma: f64, tone: f64) -> Hct {
+        Hct::from_int(solve_to_int(hue, chroma, tone))
     }
 
-    pub fn new_from_int(argb: u32) -> Hct {
+    pub fn from_int(argb: u32) -> Hct {
         let mut hct = Hct {
             hue: 0_f64,
             chroma: 0_f64,
@@ -118,7 +118,7 @@ impl Hct {
         // 3. Create HCT from:
         // - CAM16 using default VC with XYZ coordinates in specified VC.
         // - L* converted from Y in XYZ coordinates in specified VC.
-        Hct::new_from_hct(
+        Hct::from_hct(
             recast_in_vc.hue,
             recast_in_vc.chroma,
             lstar_from_y(viewed_in_viewing_conditions[1]),
