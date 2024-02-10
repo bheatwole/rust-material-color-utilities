@@ -156,7 +156,7 @@ fn write_scheme_to_file(
     ] {
         writeln!(
             file,
-            "  --{}-{}-{}: \"{}\";",
+            "  --{}-{}-{}: {};",
             prefix,
             field.0.replace("_", "-"),
             suffix,
